@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  quotation: [
+  quotations: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "quotation",

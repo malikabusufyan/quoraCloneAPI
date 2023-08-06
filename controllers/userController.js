@@ -8,7 +8,7 @@ module.exports.signUp = async (req, res) => {
   try {
     //1- Fetch the data from the database using req.body
     const { name, email, password, confirmPassword } = req.body;
-
+    
     //2-Match both the passwords
     if (password !== confirmPassword) {
       return res.status(401).json({

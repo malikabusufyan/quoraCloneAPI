@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const passport = require("passport");
 
 //Import controller for creating routes from them
 const userController = require("../controllers/userController");
@@ -12,5 +13,9 @@ router.post("/signup", userController.signUp);
 router.post("/signin", userController.signIn);
 
 //Creating API for Quotation
-router.post("/create-quotation", quotationController.createQuotation);
+router.post(
+  "/create-quotation",
+  passport.authenticate("jwt", { session: false }),
+  quotationController.createQuotation
+);
 module.exports = router;

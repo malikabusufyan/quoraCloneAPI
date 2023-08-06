@@ -5,7 +5,10 @@ const Quotation = require("../models/quotation");
 module.exports.createQuotation = async (req, res) => {
   try {
     // 1-> Get the data from req.body (content, user, subjet)
-    const { content, userId, subject } = req.body;
+    const { content, subject } = req.body;
+    //This user we are getting from the JWT Authentication
+    //Now in postman test we dont need to enter the id of the user
+    const { _id: userId } = req.user;
 
     // 2-> Create the Quotation
     const quotation = await Quotation.create({

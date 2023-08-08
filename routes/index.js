@@ -42,4 +42,12 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   userController.userDetails
 );
+
+// API to get all quotations
+router.get(
+  "/quotations",
+  passport.authenticate("jwt", { session: false }),
+  quotationController.allQuotations
+);
+
 module.exports = router;

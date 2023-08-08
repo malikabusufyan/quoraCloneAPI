@@ -9,6 +9,18 @@ module.exports.signUp = async (req, res) => {
     //1- Fetch the data from the database using req.body
     const { name, email, password, confirmPassword } = req.body;
 
+    //To add the validation errors
+    const errors = validationResult(req);
+
+    if (errors.errors.length > 0) {
+      return res.status(400).json({
+        message: "Validation error",
+        data: {
+          errors: errors,
+        },
+      });
+    }
+
     //2-Match both the passwords
     if (password !== confirmPassword) {
       return res.status(401).json({

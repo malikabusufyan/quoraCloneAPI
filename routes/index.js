@@ -18,4 +18,11 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   quotationController.createQuotation
 );
+
+//Api to get the user details
+router.get(
+  "/user-details",
+  passport.authenticate("jwt", { session: false }),
+  userController.userDetails
+);
 module.exports = router;

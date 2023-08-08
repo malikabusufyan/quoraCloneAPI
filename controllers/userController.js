@@ -8,7 +8,7 @@ module.exports.signUp = async (req, res) => {
   try {
     //1- Fetch the data from the database using req.body
     const { name, email, password, confirmPassword } = req.body;
-    
+
     //2-Match both the passwords
     if (password !== confirmPassword) {
       return res.status(401).json({
@@ -87,6 +87,40 @@ module.exports.signIn = async (req, res) => {
       message: "SignIn Successfully",
       data: {
         token: token,
+      },
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Opps!! Something Went Wrong ",
+      data: {
+        error: error,
+      },
+    });
+  }
+};
+
+//Controller action to get the user details
+module.exports.userDetails = async (req, res) => {
+  try {
+    //1-> Fetch the user
+    const { _id: userId } = req.user;
+    //2->Fetch the details of the user using Populate method
+    const user = await User.findById(userId, "name email quotations").populate([
+      {
+        //Path is used to select the path of the objectId
+        //and select to take out the particular value which we required to response
+        path: "quotations",
+        populate: {
+          path: "user",
+          select: "name",
+        },
+      },
+    ]);
+    //3->Respond the details
+    return res.status(200).json({
+      message: "Message Details Fetched Successfully",
+      data: {
+        user,
       },
     });
   } catch (error) {

@@ -5,9 +5,11 @@ const jwt = require("jsonwebtoken");
 
 //Controller to Create SignUp
 module.exports.signUp = async (req, res) => {
+  console.log("First SignuP");
   try {
     //1- Fetch the data from the database using req.body
     const { name, email, password, confirmPassword } = req.body;
+    console.log("Inside try SignuP");
 
     //To add the validation errors
     const errors = validationResult(req);
@@ -28,6 +30,7 @@ module.exports.signUp = async (req, res) => {
         data: {},
       });
     }
+
     //3-Check for the existing user
     //Mongoose Query to find the user in the database
     const user = await User.findOne({ email: email });

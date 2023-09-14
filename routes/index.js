@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
+
 // import the { check } from express-validator
 const { check } = require("express-validator");
 
@@ -23,6 +24,7 @@ const userController = require("../controllers/userController");
 const quotationController = require("../controllers/quotationController");
 
 //Creating API for singUP
+console.log("Routes aa raha hai");
 router.post("/signup", validate, userController.signUp);
 
 //Creating API for singIn

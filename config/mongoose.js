@@ -2,9 +2,7 @@ const mongoose = require("mongoose");
 //Set up default mongoose connection
 
 mongoose
-  .connect(
-    "mongodb+srv://malikabusufyan:6CAO1vHLr8ZmI6sd@cluster0.wu21t2f.mongodb.net/?retryWrites=true&w=majority"
-  )
+  .connect("mongodb://127.0.0.1:27017/quotation")
   .then(() => {
     console.log("Successfully Connected to Database");
   })

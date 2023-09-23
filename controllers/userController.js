@@ -5,11 +5,9 @@ const jwt = require("jsonwebtoken");
 
 //Controller to Create SignUp
 module.exports.signUp = async (req, res) => {
-  console.log("First SignuP");
   try {
     //1- Fetch the data from the database using req.body
     const { name, email, password, confirmPassword } = req.body;
-    console.log("Inside try SignuP");
 
     //To add the validation errors
     const errors = validationResult(req);
@@ -93,7 +91,7 @@ module.exports.signIn = async (req, res) => {
     //Token to store the session
     const token = jwt.sign(
       { email: user.email },
-      "hpEOHTnnMS72fxBhypqFHuwTq3hnM4GT",
+      "I7T0bBterFWenkLQv7SAaLDdirH3Z19r",
       { expiresIn: "1h" }
     );
 
